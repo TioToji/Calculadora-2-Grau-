@@ -13,17 +13,20 @@ Builder.load_file("interface.kv") #Arquivo interface.kv, definições da interfa
 class GerenciaTelas(ScreenManager):
     pass
 #Primeira tela
+
 class TelaInicio(Screen):
     #Método para limpar os Displays
     def limpaDisplay(self):
         self.ids.a.text = ''
         self.ids.b.text = ''
         self.ids.c.text = '' 
+        
 #Segunda tela
 class ResultTela(Screen):
     #Método para limpar a tela de respostas
     def limparScroll(self):
         self.ids.result_label.text = ''
+        
     #Método para calcular a equação
     def calcular(self, a, b, c):
         try:    
@@ -95,10 +98,12 @@ class ResultTela(Screen):
         except Exception as e:
             self.ids.result_label.text = str(e)
         self.manager.current = 'resultado'
+        
 #Classe CalculadoraApp que vai chamar o gerenciador de telas
 class CalculadoraApp(App):
     def build(self):
         return GerenciaTelas()
+        
 #Executor da aplocação
 if __name__ == '__main__':
     CalculadoraApp().run()
