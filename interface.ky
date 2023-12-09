@@ -1,0 +1,117 @@
+<TelaInicio>: 
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        spacing: 20 
+        padding: 25
+        canvas.before:
+            Color: 
+                rgba: 0.5,0.8,1.1,0.3
+            Rectangle: 
+                size:self.size
+                pos:self.pos
+        Label:
+            text: ' Formula :  ax² + bx + c = 0'
+            font_size: 25
+            size_hint: None, None
+            size: 400, 80
+            color: (1,1,1,1)
+        TextInput:
+            id: a
+            text: ''
+            font_size: 25
+            size_hint_y: None
+            multiline: False
+            hint_text:'Digite o coeficiente (a)'
+        TextInput:
+            id: b
+            text: ''
+            font_size: 25
+            size_hint_y: None
+            multiline: False
+            hint_text:'Digite o coeficiente (b)'
+        TextInput:
+            id: c
+            text: ''
+            font_size: 25
+            size_hint_y: None
+            multiline: False
+            hint_text:'Digite o coeficiente (c)'
+        GridLayout:
+            cols: 2
+            rows: 1
+            spacing: 20 
+            Button:
+                id: bt_calc
+                text: 'CALCULAR'
+                font_size: 25
+                size_hint_y: None
+                height: 50
+                on_release: root.manager.get_screen('resultado').calcular(a.text, b.text, c.text)
+                color: (1,1,1,1)
+                background_color: (0.5,0.8,1.1,2)
+            Button:
+                id: bt_limp
+                text: 'LIMPAR'
+                font_size: 25
+                size_hint_y: None
+                height: 50
+                on_release: root.limpaDisplay()
+                color: (1,1,1,1)
+                background_color: (0.5,0.8,1.1,2)
+        BoxLayout:
+            Label:
+                text: 'by: Julio Cesar e Ilan Christian'
+                font_size: 15
+                size_hint: None, None
+                size: 350, 50
+                color: (1,1,1,1)
+            Button:
+                id: bt_sair
+                text: 'SAIR'
+                font_size: 25
+                size_hint_y: None
+                height: 50
+                on_release: app.stop()
+                color: (1,1,1,1)
+                background_color: (0.5,0.8,1.1,2)
+<ResultTela>:
+    orientation: 'vertical'
+    spacing: 20
+    padding: 10
+    canvas.before: 
+        Color: 
+            rgba: 0.5,0.8,1.1,0.3
+        Rectangle: 
+            size:self.size
+            pos:self.pos
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 80
+        Label:
+            text: 'RESOLUÇÃO'
+            font_size: 25
+            size_hint_y: None
+            height: 80
+            color: (1,1,1,1)
+        ScrollView:
+            Label:
+                id: result_label
+                font_size: 20
+                size_hint_y: None
+                height: self.texture_size[1]
+                color: (1,1,1,1)
+        Button:
+            text: 'RETORNAR'
+            font_size: 25
+            size_hint_y: None
+            height: 50
+            on_press: root.manager.current = 'calculadora'
+            on_press: root.limparScroll()
+            color: (1,1,1,1)
+            background_color: (0.5,0.8,1.1,2)
+<GerenciaTelas>:
+    TelaInicio:
+        name: 'calculadora'
+    ResultTela:
+        name: 'resultado'
