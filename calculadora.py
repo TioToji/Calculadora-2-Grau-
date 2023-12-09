@@ -101,6 +101,7 @@ class ResultTela(Screen):
         
 #Classe CalculadoraApp que vai chamar o gerenciador de telas
 class CalculadoraApp(App):
+    title="Calculadora de Equação de 2º Grau"
     def build(self):
         return GerenciaTelas()
         
